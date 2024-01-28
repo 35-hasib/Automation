@@ -1,8 +1,11 @@
 from selenium import webdriver
 import pandas as pd
+import os
+
+website = 'https://www.thesun.co.uk/tech/'
 
 driver = webdriver.Chrome()
-driver.get('https://www.thesun.co.uk/tech/')
+driver.get(website)
 contents = driver.find_elements(by='xpath', value='//div[@class="teaser__copy-container"]')
 
 titles = []
@@ -21,6 +24,6 @@ for content in contents:
 my_disk = {'titles':titles,'subtitles':subtitles,'links':links,}
 
 allData = pd.DataFrame(my_disk)
-allData.to_markdown('allData.md')
+allData.to_markdown('allData(1).md')
 
 driver.quit()
