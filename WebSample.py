@@ -1,9 +1,15 @@
 from selenium import webdriver
 import pandas as pd
 import os
+from datetime import datetime
+import sys
+
+application_path = os.path.dirname(sys.executable)
+now = datetime.now()
+date = now.strftime('%d-%b-%Y-%H-%M-%S')
+
 
 website = 'https://www.thesun.co.uk/tech/'
-
 driver = webdriver.Chrome()
 driver.get(website)
 contents = driver.find_elements(by='xpath', value='//div[@class="teaser__copy-container"]')
@@ -24,6 +30,6 @@ for content in contents:
 my_disk = {'titles':titles,'subtitles':subtitles,'links':links,}
 
 allData = pd.DataFrame(my_disk)
-allData.to_markdown('allData(1).md')
+allData.to_excel(f"data"+date+".xlsx")
 
 driver.quit()
