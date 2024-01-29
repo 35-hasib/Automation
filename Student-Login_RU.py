@@ -11,7 +11,7 @@ pas = getpass("Password : ")
 options = Options()
 options.add_argument('headless')
 # webbrowser
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(options=options)
 driver.get('http://rurfid.ru.ac.bd/ru_services/public/login')
 driver.find_element(by='name', value='username').send_keys(id)
 driver.find_element(by='name', value='password').send_keys(pas)
